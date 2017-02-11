@@ -1,5 +1,3 @@
-From response.json, all image links of card that has an image link. Gold card link not included.
-
 http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_09.png
 http://wow.zamimg.com/images/hearthstone/cards/enus/original/hexfrog.png
 http://media.services.zam.com/v1/media/byName/hs/cards/enus/HERO_01.png
