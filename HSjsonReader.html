@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HSjsonReader</title>
+	<meta charset="UTF-8" />
+		
+	<style type="text/css">	
+  body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  }
+	#searchBar{
+    display: none;
+    width:200px;
+  }
+  
+  #resultButtonContainer{
+    display: none;
+    padding-top: 0px;
+    width: 200px;
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 0px 5px 0px #ccc;
+  }
+  input[type=text], textarea {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #DDDDDD;
+  }
+ 
+  input[type=text]:focus, textarea:focus {
+    -webkit-animation:glow 1s ease-out infinite alternate;
+    animation: glow 1s ease-out infinite alternate;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid rgba(81, 203, 238, 1);
+  }
+
+  #resultButtonContainer button{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, sans-serif;
+  width:200px;
+  padding-left: 7px;
+  text-align: left;
+  }
+  .resultButton {
+    background-color: rgb(255,255,255);
+    border: none;
+    color: black;
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    margin: 0px;
+    cursor: pointer;
+  }
+  .resultButton:hover {
+    background-color: rgb(230,230,230);
+    border: none;
+    color: black;
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    width: 100px;
+    margin: 0px;
+    cursor: pointer;
+  }
+  #searchContainer{
+    position: relative;
+  }
+  @-webkit-keyframes glow {
+    0% {
+
+      box-shadow: 0 0 5px rgba(70,240,240,.2), inset 0 0 5px rgba(70,240,240,.1);
+      } 
+      100% {
+
+      box-shadow: 0 0 15px rgba(70,240,240,.6), inset 0 0 10px rgba(70,240,240,.4);
+      }
+  }
+  @keyframes glow {
+      0% {
+
+      box-shadow: 0 0 5px rgba(70,240,240,.2), inset 0 0 5px rgba(70,240,240,.1);
+      } 
+      100% {
+
+      box-shadow: 0 0 15px rgba(70,240,240,.6), inset 0 0 10px rgba(70,240,240,.4);
+      }
+  }
+	</style>	
+</head>
+<body>
+<div><input type="file" id="files" name="files[]" multiple /></div>
+<div id = "searchContainer">
+  <div>
+    <input id= "searchBar" type="text" name="search" placeholder="Search..">
+
+  </div>
+  <div id="resultButtonContainer">
+    <button class="resultButton">Button0</button>
+    <br>
+    <button class="resultButton">Button1</button>
+    <br>
+    <button class="resultButton">Button2</button>
+    <br>
+    <button class="resultButton">Button3</button>
+    <br>
+    <button class="resultButton">Button4</button>
+    <br>
+    <button class="resultButton">Button5</button>
+    <br>
+  </div>
+
+</div>
+<script>
+var cardsObject = [];
+var cardsNumber = 0;
+// the object of search bar element 
+var serachBar = document.getElementById("searchBar");
+//the element of file input element
+var fileInput = document.getElementById("files");
+//the element of all result button
+var resultButtonContainer = document.getElementById("resultButtonContainer");
+
+//this function is used to get the local data file and manipulate of that
+function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+    for (var i = 0, f; f = files[i] ; i++) {
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+        var line = [];
+        var readLineNumber = 0;
+        var fileContent = e.target.result;
+        try {
+          cardsObject = JSON.parse(fileContent);
+        } catch(e) {
+             alert("少喝酒？说不明白？再来一次吧"); // error in the above string (in this case, yes)!
+        }
+          
+        if(cardsObject[2000].name == "Aya Blackpaw"){
+          alert("card data upload successfully!");
+          fileInput.style.display ="none"; 
+          searchBar.style.display = "block";
+        }
+        else{
+          alert("少喝酒？说不明白？再来一次吧"); // error in the above string (in this case, yes)!
+        }
+
+        };
+     
+
+      })(f);
+
+      reader.readAsText(f);
+    }
+  }
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
+  function findCardByName(){
+
+  }
+  function findCardByCost(){
+    
+  }
+  //which is used to analyze the description of a card and add the proper listener to it
+  function analyzeCard(){}
+  function findCardByAttr(inputAttr,resultLimit){
+      var health = parseInt(inputAttr.charAt(2));
+      var attack = parseInt(inputAttr.charAt(1));
+      var cost = parseInt(inputAttr.charAt(0));
+      //alert("attack :" + attack+" health: " +health + " cost: "+cost);
+      var resultNumber = 0;
+      var resultSet = [];
+      for(var i = 0; i <cardsObject.length;i++){
+        if(cardsObject[i].type == "MINION" ){
+          if( cardsObject[i].health == health && cardsObject[i].attack == attack && cardsObject[i].cost == cost){
+            resultSet[resultNumber] = cardsObject[i];
+            resultNumber++;
+            if(resultNumber == resultLimit){
+              break; 
+            }
+          }
+        }
+      }
+      return resultSet;
+  }
+  function findCardByRace(raceName,resultLimit){
+    //this fucntion is used to record the current search number which is comparing with the result Limit
+    raceName = raceName.toUpperCase();
+    var resultNumber = 0;
+    var resultSet = [];
+    for(var i = 0; i <cardsObject.length;i++){
+      if(cardsObject[i].race == raceName){
+        resultSet[resultNumber] = cardsObject[i];
+        resultNumber++;
+        if(resultNumber == resultLimit){
+          break; 
+        }
+      }
+    }
+    return resultSet;
+  }
+
+  document.getElementById("searchBar").addEventListener("keypress", function (e) {
+    var resultSet = [];
+    //use to manipulate the result buttons
+    var resultButtonSet = document.getElementsByClassName("resultButton");
+    //this fucntion is used to limit the result set size
+    var serachLimit = 6;
+      if (13 == e.keyCode) {
+        resultButtonContainer.style.display  ="block";
+        //resultButtonSet[0].innerHTML= "sb!";
+        if(isNaN(searchBar.value)){
+          resultSet = findCardByRace(searchBar.value,6);
+        }
+        else{
+          resultSet = findCardByAttr(searchBar.value,6);
+        }
+
+      if(resultSet.length == 0){
+        alert("没这个东西！");
+      }else{
+        for(var i = 0; i < resultSet.length;i++){
+        resultButtonSet[i].innerText = resultSet[i].name;
+      }
+      }       
+
+    }
+  });
+</script>
+</body>
+</html>
