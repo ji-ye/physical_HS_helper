@@ -76,6 +76,9 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Cards(models.Model):
+    '''
+    Card data.
+    '''
     db_index = models.IntegerField(blank=True, null=True)
     artist = models.TextField(blank=True, null=True)
     attack = models.TextField(blank=True, null=True)
@@ -120,6 +123,9 @@ class Cards(models.Model):
 
 
 class CardsZhcn(models.Model):
+    '''
+    Card data in Chinese
+    '''
     db_index = models.IntegerField(blank=True, null=True)
     artist = models.TextField(blank=True, null=True)
     attack = models.TextField(blank=True, null=True)

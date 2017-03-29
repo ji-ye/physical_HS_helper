@@ -25,7 +25,7 @@ SECRET_KEY = '-+js6enyk56fluay+6k(eunuf%hll8gxr4_o8gxw$auue+)143'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jiyecapp.pythonanywhere.com']
 
 
 # Application definition
