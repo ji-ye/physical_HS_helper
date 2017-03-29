@@ -1,3 +1,10 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
 from __future__ import unicode_literals
 
 from django.db import models
@@ -94,7 +101,7 @@ class Cards(models.Model):
     hidestats = models.TextField(db_column='hideStats', blank=True, null=True)  # Field name made lowercase.
     howtoearn = models.TextField(db_column='howToEarn', blank=True, null=True)  # Field name made lowercase.
     howtoearngolden = models.TextField(db_column='howToEarnGolden', blank=True, null=True)  # Field name made lowercase.
-    id = models.TextField(primary_key=True, blank=True, null=False)
+    id = models.TextField(primary_key=True, blank=True, null=True)
     mechanics = models.TextField(blank=True, null=True)
     multiclassgroup = models.TextField(db_column='multiClassGroup', blank=True, null=True)  # Field name made lowercase.
     name = models.TextField(blank=True, null=True)
@@ -113,10 +120,6 @@ class Cards(models.Model):
     class Meta:
         managed = False
         db_table = 'cards'
-
-    def __str__(self):
-        display = self.name + ' (Text: ' + self.card_text + ' Mechanics: ' + self.mechanics + ')'
-        return str(display)
 
 
 class CardsZhcn(models.Model):
@@ -138,7 +141,7 @@ class CardsZhcn(models.Model):
     hidestats = models.TextField(db_column='hideStats', blank=True, null=True)  # Field name made lowercase.
     howtoearn = models.TextField(db_column='howToEarn', blank=True, null=True)  # Field name made lowercase.
     howtoearngolden = models.TextField(db_column='howToEarnGolden', blank=True, null=True)  # Field name made lowercase.
-    id = models.TextField(primary_key=True, blank=True, null=False)
+    id = models.TextField(primary_key=True, blank=True, null=True)
     mechanics = models.TextField(blank=True, null=True)
     multiclassgroup = models.TextField(db_column='multiClassGroup', blank=True, null=True)  # Field name made lowercase.
     name = models.TextField(blank=True, null=True)
@@ -157,11 +160,6 @@ class CardsZhcn(models.Model):
     class Meta:
         managed = False
         db_table = 'cards_zhCN'
-
-    def __str__(self):
-        return str(self.name)
-
-
 
 
 class DjangoAdminLog(models.Model):
