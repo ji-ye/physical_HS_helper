@@ -1,5 +1,13 @@
-<form role="form" action="" method="post">
+{% load crispy_forms_tags %}
+<h1>Search card by name</h1>
+<form role="form" action="/bynameresult/" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+    {{ form }}
+    <button type="submit">Search</button>
+</form>
+
+<form role="form" action="/bynameresult/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Search</button>
 </form>

@@ -118,7 +118,7 @@ class Cards(models.Model):
         db_table = 'cards'
 
     def __str__(self):
-        display = self.name + ' (Text: ' + self.card_text + ' Mechanics: ' + self.mechanics + ')'
+        display = self.name + ' (cardId: ' + self.id + ')'
         return str(display)
 
 

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['jiyecapp.pythonanywhere.com',
 
 INSTALLED_APPS = [
     'searchcard.apps.SearchcardConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,3 +121,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
