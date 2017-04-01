@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^searchcard/', include('searchcard.urls')),
+    # url(r'^searchcard/', include('searchcard.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^', include('searchcard.urls')),
 ]

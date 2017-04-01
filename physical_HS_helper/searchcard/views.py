@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import Http404
-
+from .models import Cards
 
 def index(request):
     return render(request, 'searchcard/index.html')
 
 
-from .models import Cards
 def card_id(request, card_id):
     '''
     Display card name by typing a card's db_index after "searchcard/"
