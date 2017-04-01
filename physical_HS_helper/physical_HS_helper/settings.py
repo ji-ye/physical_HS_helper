@@ -13,8 +13,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('cards.db')))
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('cards.db')))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -25,7 +24,9 @@ SECRET_KEY = '-+js6enyk56fluay+6k(eunuf%hll8gxr4_o8gxw$auue+)143'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jiyecapp.pythonanywhere.com']
+ALLOWED_HOSTS = ['jiyecapp.pythonanywhere.com',
+                'localhost'
+]
 
 
 # Application definition
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'physical_HS_helper.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/Users/apple/Desktop/physical_HS_helper/data_preprocess/cards.db',
+        'NAME': os.path.join(BASE_DIR, 'data_preprocess/cards.db'),
     }
 }
 
