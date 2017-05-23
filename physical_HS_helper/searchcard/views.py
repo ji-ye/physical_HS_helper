@@ -32,8 +32,8 @@ def byname(request):
         form = form_class(data=request.POST)
 
         if form.is_valid():
-            card_name = request.POST.get('card_name', '')
-            collectibles = Cards.objects.all().filter(collectible = 1)
+            card_name = request.POST.get('card_name')
+            collectibles = Cards.objects.all().filter(collectible=1)
             result = collectibles.filter(name__contains=card_name)
             card_lst = []
             img_lst = []
